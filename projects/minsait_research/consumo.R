@@ -1,9 +1,6 @@
 #######################################################
 ######## ENTORNO DEL PROYECTO #########################
 
-getwd() ##te dice donde esta tu workspace
-source("settings.R")
-
 ## configuración de base de datos de trabajo
 server <- "40.115.26.178"
 database <- "MUSGRAVE"
@@ -12,21 +9,27 @@ password <- "Zaragoza1"
 myConnection <- paste0("driver={SQL Server};server=",server,";database=",database,";uid=",user,";pwd=",password)
 
 ## install.packages("RODBC")
-source("tools/dbSqlServer.R")
-  ## Listado de funciones en paquete
-  ## dbSqlServerQuery <- function(myConnection, SQLquery)
-  ## dbSqlServerWriteDataFrame <- function(myConnection, dataFrame, dbTableName)
+source("tools/dbSqlServer.R")   ## FUNCIONES PARA LEER Y ESCRIBIR TABLAS EN LA BASE DE DATOS
+  ## dbSqlServerReadTable <- function(myConnection, dbTableName)
+  ## dbSqlServerWriteDataFrame <- function(myConnection, dbTableName, dataFrame)
 
 
 #######################################################
 ######## COMIENZO DEL PROGRAMA#########################
 
-## consulta de carga de información
-SQLquery <- "select * from [ibc].[zzz_test_cestes_new]"
-response <- dbSqlServerQuery(myConnection, SQLquery)
+## consulta de carga de información ibc.zzz_test_cestes_new
+inputTable <- "ibc.zzz_test_cestes_new"
+inputTable_response <- dbSqlServerReadTable(myConnection, inputTable)
 
-nombreTablaResultados <- "[ibc].[zzz_test_cestes_new_escribe_R_2]"
-dbSqlServerWriteDataFrame(myConnection, response, nombreTablaResultados)
+outputTable <- "ibc.zzz_test_cestes_new_escribe_R_2"
+dbSqlServerWriteDataFrame(myConnection, outputTable, inputTable_response)
+
+## NO MIRES DEBAJO DE ESTO ALBERT :)
+
+
+#######################################################
+#######################################################
+#######################################################
 
 
 x <- seq (0,100) 
