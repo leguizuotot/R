@@ -1,11 +1,11 @@
 #######################################################
 ######## ENTORNO DEL PROYECTO #########################
 
-## configuración de base de datos de trabajo
-server <- "40.115.26.178"
-database <- "MUSGRAVE"
-user <- "sqlcsa"
-password <- "Zaragoza1"
+## configuraciÃ³n de base de datos de trabajo
+server <- "########"
+database <- "########"
+user <- "########"
+password <- "########"
 myConnection <- paste0("driver={SQL Server};server=",server,";database=",database,";uid=",user,";pwd=",password)
 
 ## install.packages("RODBC")
@@ -17,7 +17,7 @@ source("tools/dbSqlServer.R")   ## FUNCIONES PARA LEER Y ESCRIBIR TABLAS EN LA B
 #######################################################
 ######## COMIENZO DEL PROGRAMA#########################
 
-## consulta de carga de información ibc.zzz_test_cestes_new
+## consulta de carga de informaciÃ³n ibc.zzz_test_cestes_new
 inputTable <- "ibc.zzz_test_cestes_new"
 inputTable_response <- dbSqlServerReadTable(myConnection, inputTable)
 
